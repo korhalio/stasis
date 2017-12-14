@@ -1,0 +1,9 @@
+*libgcc:
+libgcc.a%s
+
+*startfile:
+rcrt1.o%s
+
+*link:
+-no-dynamic-linker
+
