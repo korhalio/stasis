@@ -5,5 +5,5 @@ libgcc.a%s
 rcrt1.o%s
 
 *link:
--no-dynamic-linker
+-pie -no-dynamic-linker -Bstatic -Bsymbolic
 

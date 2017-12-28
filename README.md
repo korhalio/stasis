@@ -11,6 +11,7 @@ no matter which libc is installed.
 available architectures:
  - x86_64
  - mips
+ - mipsel
 
 available rust versions:
  - 1.22.1 (default when no tag specified)

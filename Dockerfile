@@ -19,11 +19,17 @@ RUN useradd -u 1000 dockeruser -m --shell /bin/bash
 ARG rust
 RUN \
     echo "$arch" > /.arch &&\
-    /usr/local/cargo/bin/rustup toolchain install $rust-$arch-unknown-linux-gnu &&\
-    /usr/local/cargo/bin/rustup default $rust &&\
-    /usr/local/cargo/bin/rustup target add $arch-unknown-linux-musl --toolchain $rust-$arch-unknown-linux-gnu
+    /usr/local/cargo/bin/rustup toolchain install $rust-x86_64-unknown-linux-gnu &&\
+    /usr/local/cargo/bin/rustup target add $arch-unknown-linux-musl --toolchain $rust-x86_64-unknown-linux-gnu
 
 ADD entrypoint.sh user.sh musl-gcc.specs /
+
+RUN cp /buildroot/output/build/musl-1.1.18/lib/crti.o \
+/usr/local/rustup/toolchains/$rust-x86_64-unknown-linux-gnu/lib/rustlib/$arch-unknown-linux-musl/lib/crti.o \
+&& cp /buildroot/output/build/musl-1.1.18/lib/rcrt1.o \
+/usr/local/rustup/toolchains/$rust-x86_64-unknown-linux-gnu/lib/rustlib/$arch-unknown-linux-musl/lib/crt1.o \
+&& cp /buildroot/output/build/musl-1.1.18/lib/crtn.o \
+/usr/local/rustup/toolchains/$rust-x86_64-unknown-linux-gnu/lib/rustlib/$arch-unknown-linux-musl/lib/crtn.o
 
 ENTRYPOINT ["/user.sh", "/entrypoint.sh"]
 
