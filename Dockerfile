@@ -1,4 +1,4 @@
-FROM rust:1.22.1
+FROM rust:1.25.0
 
 RUN apt update && apt install -y build-essential gcc git make sed \
   binutils patch gzip bzip2 perl tar cpio python \

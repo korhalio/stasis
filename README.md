@@ -14,7 +14,8 @@ available architectures:
  - mipsel
 
 available rust versions:
- - 1.22.1 (default when no tag specified)
+ - 1.25.0 (default when no tag specified)
+ - 1.22.1
  - nightly-2017-10-14
 
 
